@@ -1,6 +1,17 @@
 # https://adventofcode.com/2023/day/1
 
 
+class FileReader:
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def gen_file_reader(file_name):
+        with open(file_name, "r") as file:
+            for row in file:
+                yield row.strip()
+
+
 class CalibrationRestorer:
     def __init__(self):
         self.dict_coord = {
@@ -15,13 +26,9 @@ class CalibrationRestorer:
             "nine": "9",
         }
 
-    def _gen_file_reader(self, file_name):
-        for row in open(file_name, "r"):
-            yield row.strip()
-
     def calibration(self, file_name):
         digits = []
-        for row in self._gen_file_reader(file_name):
+        for row in FileReader.gen_file_reader(file_name):
             digits_in_row = []
             for char in row:
                 if char.isdigit():
@@ -34,7 +41,7 @@ class CalibrationRestorer:
 
     def calibration_advanced(self, file_name):
         digits = []
-        for row in self._gen_file_reader(file_name):
+        for row in FileReader.gen_file_reader(file_name):
             digits_in_row = []
             left = 0
 
