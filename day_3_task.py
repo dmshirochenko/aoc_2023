@@ -1,6 +1,4 @@
 # https://adventofcode.com/2023/day/3
-import re
-
 
 class FileReader:
     def __init__(self):
