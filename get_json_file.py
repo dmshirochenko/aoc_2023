@@ -42,3 +42,5 @@ if __name__ == "__main__":
     connection_instance.download_file("https://adventofcode.com/2023/day/3/input", "day_3.txt")
     # day 4
     connection_instance.download_file("https://adventofcode.com/2023/day/4/input", "day_4.txt")
+    # day 5
+    connection_instance.download_file("https://adventofcode.com/2023/day/5/input", "day_5.txt")
