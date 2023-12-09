@@ -1,4 +1,4 @@
-# https://adventofcode.com/2023/day/5
+# https://adventofcode.com/2023/day/8
 import re
 import math
 from functools import reduce
