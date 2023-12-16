@@ -85,18 +85,18 @@ class HashFunc:
         hash_result = 0
         for char in text:
             hash_result = (hash_result + ord(char)) * HASH_MULTIPLIER % MODULUS
-        
+
         return hash_result
 
     def lenses_dict_implementation(self, text):
-        if '-' in text:
-            label = text.rstrip('-')
+        if "-" in text:
+            label = text.rstrip("-")
             label_hash = self.hash_function(label)
             if label_hash in self.lenses_dict:
                 self.lenses_dict[label_hash].delete_node(label)
 
         else:
-            label, focus_power = text.split('=')
+            label, focus_power = text.split("=")
             label_hash = self.hash_function(label)
 
             if label_hash not in self.lenses_dict:
@@ -121,19 +121,20 @@ class HashFunc:
         return sum_of_focusing_power
 
     def get_sum_of_hashes(self, file_name):
-        sum_of_hashes = 0       
-        lst_of_strings = [i for i in next(FileReader().gen_file_reader(file_name)).split(',')]
-        
+        sum_of_hashes = 0
+        lst_of_strings = [i for i in next(FileReader().gen_file_reader(file_name)).split(",")]
+
         for line in lst_of_strings:
             sum_of_hashes += self.hash_function(line)
             self.lenses_dict_implementation(line)
 
         return sum_of_hashes
 
-if __name__ == '__main__':
-    print('Day 15')
+
+if __name__ == "__main__":
+    print("Day 15")
     hash_func_instance = HashFunc()
-    sum_of_hashes = hash_func_instance.get_sum_of_hashes('day_15.txt')
-    print('Task 1 = ', sum_of_hashes)
+    sum_of_hashes = hash_func_instance.get_sum_of_hashes("day_15.txt")
+    print("Task 1 = ", sum_of_hashes)
     sum_of_focusing_power = hash_func_instance.get_sum_of_focusing_power_of_lenses()
-    print('Task 2 = ', sum_of_focusing_power)
+    print("Task 2 = ", sum_of_focusing_power)
