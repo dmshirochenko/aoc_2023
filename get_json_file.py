@@ -60,3 +60,15 @@ if __name__ == "__main__":
     connection_instance.download_file("https://adventofcode.com/2023/day/12/input", "day_12.txt")
     # day 13
     connection_instance.download_file("https://adventofcode.com/2023/day/13/input", "day_13.txt")
+    # day 14
+    connection_instance.download_file("https://adventofcode.com/2023/day/14/input", "day_14.txt")
+    # day 15
+    connection_instance.download_file("https://adventofcode.com/2023/day/15/input", "day_15.txt")
+    # day 16
+    connection_instance.download_file("https://adventofcode.com/2023/day/16/input", "day_16.txt")
+    # day 17
+    connection_instance.download_file("https://adventofcode.com/2023/day/17/input", "day_17.txt")
+    # day 18
+    connection_instance.download_file("https://adventofcode.com/2023/day/18/input", "day_18.txt")
+    # day 19
+    connection_instance.download_file("https://adventofcode.com/2023/day/19/input", "day_19.txt")

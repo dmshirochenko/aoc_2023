@@ -137,7 +137,7 @@ class PartsSorter:
         #task 2
         self.get_workflow_adj_list()
         accepted_conditions_path = self.bfs_to_find_possible_accepted_conditions()
-        
+
         total_accepted_parts = 0
         for _, conditions in accepted_conditions_path:
             range_dict = {key: [1, 4000] for key in ['x', 'm', 'a', 's']}
