@@ -12,6 +12,7 @@ class FileReader:
             for row in file:
                 yield row.strip()
 
+
 class CubesDownfall:
     def __init__(self):
         self.bricks = []
@@ -37,7 +38,9 @@ class CubesDownfall:
 
             supporting_positions = []  # Initialize supporting_positions
             while z_start > 1:
-                supporting_positions = self.find_supporting_positions(x_start, x_end, y_start, y_end, z_start, z_end, occupied_space_map)
+                supporting_positions = self.find_supporting_positions(
+                    x_start, x_end, y_start, y_end, z_start, z_end, occupied_space_map
+                )
                 if supporting_positions:
                     break
                 z_start, z_end = z_start - 1, z_end - 1
@@ -62,26 +65,48 @@ class CubesDownfall:
 
         return removable_count
 
+    def count_chain_reaction(self, brick_supports, brick_supported_by):
+        total_reaction_count = 0
+        for initial_brick_id in brick_supports:
+            bricks_to_check = brick_supports[initial_brick_id].copy()
+            falling_bricks = {initial_brick_id}
+
+            while bricks_to_check:
+                current_brick_id = bricks_to_check.pop(0)
+
+                if all(support_id in falling_bricks for support_id in brick_supported_by[current_brick_id]):
+                    falling_bricks.add(current_brick_id)
+                    bricks_to_check += brick_supports[current_brick_id]
+
+            total_reaction_count += len(falling_bricks) - 1
+
+        return total_reaction_count
+
     def get_num_of_cubes_to_disintegrate(self, file_name):
         row = 0
         for line in FileReader().gen_file_reader(file_name):
-            brick = [[int(n) for n in coord.split(",")]
-                    for coord in line.split("~")]
+            brick = [[int(n) for n in coord.split(",")] for coord in line.split("~")]
             brick += [row]
-    
+
             self.bricks.append(brick)
             row += 1
         self.bricks.sort(key=lambda b: b[0][2])
 
         brick_supports_map, brick_supported_by_map = self.simulate_brick_falling(self.bricks)
-        num_of_cubes_to_disintegrate = self.count_removable(brick_supports_map, brick_supported_by_map)
 
-        return num_of_cubes_to_disintegrate
+        num_of_cubes_to_disintegrate_1 = self.count_removable(brick_supports_map, brick_supported_by_map)
+        num_of_cubes_to_disintegrate_2 = self.count_chain_reaction(brick_supports_map, brick_supported_by_map)
+        return num_of_cubes_to_disintegrate_1, num_of_cubes_to_disintegrate_2
 
-if __name__ == '__main__':
-    print('Day 22')
+
+if __name__ == "__main__":
+    print("Day 22")
     cubes_downfall_instance = CubesDownfall()
-    num_of_cubes_to_disintegrate = cubes_downfall_instance.get_num_of_cubes_to_disintegrate('day_22.txt')
-    print('Task 1 is = ', num_of_cubes_to_disintegrate)
+    (
+        num_of_cubes_to_disintegrate_1,
+        num_of_cubes_to_disintegrate_2,
+    ) = cubes_downfall_instance.get_num_of_cubes_to_disintegrate("day_22.txt")
+    print("Task 1 is = ", num_of_cubes_to_disintegrate_1)
+    print("Task 2 is = ", num_of_cubes_to_disintegrate_2)
 
-#389
+# 389
