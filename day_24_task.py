@@ -1,5 +1,6 @@
-# https://adventofcode.com/2023/day/23
+# https://adventofcode.com/2023/day/24
 import itertools
+import z3
 
 
 class FileReader:
@@ -81,8 +82,8 @@ class HailCollider:
             tuple_of_coord_velocity = (coord, velocity)
             data.append(tuple_of_coord_velocity)
 
+        # part 1
         unique_pairs = [(data[i], data[j]) for i in range(len(data)) for j in range(i + 1, len(data))]
-
         count_intersections = 0
         for pair in unique_pairs:
             point_1_tuple, point_2_tuple = pair
@@ -103,11 +104,32 @@ class HailCollider:
                 if self.is_it_in_frame(point1_line1, line_vel_1, point1_line2, line_vel_2, point_coord_intersection):
                     count_intersections += 1
 
-        return count_intersections
+        # part 2
+        rock = z3.RealVector("r", 6)
+        time = z3.RealVector("t", 3)
+        s = z3.Solver()
+
+        for index, moving_object in enumerate(data[:3]):
+            position, velocity = moving_object[0], moving_object[1]
+            for d in range(3):
+                rock_pos = rock[d] + rock[d + 3] * time[index]
+                moving_object_pos = position[d] + velocity[d] * time[index]
+
+                s.add(rock_pos == moving_object_pos)
+
+        if s.check() == z3.sat:
+            model = s.model()
+            rock_values = [model.eval(rock[d]) for d in range(3)]
+            sum_of_rock_coord = z3.simplify(sum(rock_values))
+        else:
+            print("No solution found")
+
+        return count_intersections, sum_of_rock_coord
 
 
 if __name__ == "__main__":
     print("Day 24")
     hail_collider_instance = HailCollider()
-    num_of_crosses = hail_collider_instance.get_num_of_crosses("day_24.txt")
+    num_of_crosses, sum_of_rock_coord = hail_collider_instance.get_num_of_crosses("day_24.txt")
     print("Task 1 is = ", num_of_crosses)
+    print("Task 2 is = ", sum_of_rock_coord)
