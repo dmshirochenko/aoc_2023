@@ -79,13 +79,14 @@ class SnowMachine:
             else:
                 for node in connected_nodes_lst:
                     self.adj_lst[key_node].append(node)
-
+            
             for node in connected_nodes_lst:
                 if node not in self.adj_lst:
                     self.adj_lst[node] = [key_node]
                     self.set_of_nodes.add(node)
                 else:
                     self.adj_lst[node].append(key_node)
+            
 
         dot_config = self.convert_to_dot(self.adj_lst)
         with open("mygraph.dot", "w") as writer:
