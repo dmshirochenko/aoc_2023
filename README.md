@@ -13,7 +13,7 @@ The challenge? The main task is to identify the longest path from a starting poi
 
 I appreciate the concept of enlarging the grid to accurately identify and calculate the tiles that are enclosed within the boundaries of this pipe loop.
 
-[Check out the code for Day 14](./day_10_tasks.py)
+[Check out the code for Day 14](./day_10_task.py)
 
 ## Day 25: Snowverload 🏞️
 
