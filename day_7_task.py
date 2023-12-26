@@ -124,23 +124,3 @@ if __name__ == "__main__":
     camal_game_instance_part_2 = CamelCards()
     final_card_score_part_2 = camal_game_instance_part_2.get_hands_rank(file_name="day_7.txt", is_part_two=True)
     print("Task 2 =", final_card_score_part_2)
-
-
-class Solution:
-    def largestOddNumber(self, num: str) -> str:
-        max_odd_num = -1
-        left = 0
-        for right in range(1, len(num)):
-
-            while int(num[left:right]) % 2 != 0 and right >= left:
-                print(num[left:right])
-                max_odd_num = max(max_odd_num, int(num[left:right]))
-                left += 1
-
-        if max_odd_num == -1:
-            max_odd_num = ""
-
-        return str(max_odd_num)
-
-
-print(Solution().largestOddNumber("52"))

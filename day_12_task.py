@@ -1,3 +1,5 @@
+# https://adventofcode.com/2023/day/12
+
 from functools import lru_cache
 from collections import deque
 
