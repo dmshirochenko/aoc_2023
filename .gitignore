@@ -1,7 +1,6 @@
 #
 *.txt
 *.dot
-*.png
 
 #Files for local dev
 main_for_local_dev.py
