@@ -17,7 +17,7 @@ I appreciate the concept of enlarging the grid to accurately identify and calcul
 
 ## Day 25: Snowverload 🏞️
 
-Graph vizualiztion could be very usefull tool even on huge inputs. Very nice tool - Graphviz.
+Graph visualization can be an exceptionally useful tool, even for managing large datasets. Graphviz stands out as a particularly impressive tool for this purpose, offering robust functionality and versatility.
 
 ![Graph Vizialization](output_day_25.png)
 
@@ -25,7 +25,7 @@ Graph vizualiztion could be very usefull tool even on huge inputs. Very nice too
 
 Want to join in on the festive fun? Follow these reindeer tracks:
 
-1. Clone the repository: `git clone git@github.com:dmshirochenko/aoc_2023.gitt`
+1. Clone the repository: `git clone git@github.com:dmshirochenko/aoc_2023.git`
 2. Run the solution with the magic word: `python day-xx_task.py`
 
 ## Happy Holidays! 🎉
